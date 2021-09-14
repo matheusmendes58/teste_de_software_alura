@@ -7,8 +7,8 @@ class TestAvaliador(TestCase):
     def setUp(self): # método do unittest para criação de cenarios ou seja cada função abaixo sera invocado automaticamente esta função antes
         # criando usuarios
 
-        self.gui = Usuario('Gui')
-        self.yuri = Usuario('Yuri')
+        self.gui = Usuario('Gui', 500.0)
+        self.yuri = Usuario('Yuri', 500.0)
 
         # lances
 
@@ -32,7 +32,7 @@ class TestAvaliador(TestCase):
 
     def test_nao_deve_permitir_propor_um_lance_em_ordem_decrecente(self):
         with self.assertRaises(ValueError):
-            yuri = Usuario('Yuri')
+            yuri = Usuario('Yuri', 500.0)
             lance_do_yuri = Lance(yuri, 100.0)
             self.leilao.propoe(self.lance_do_gui)
             self.leilao.propoe(lance_do_yuri)
@@ -44,7 +44,7 @@ class TestAvaliador(TestCase):
         self.assertEqual(150.0, self.leilao.maior_lance)
 
     def test_deve_retornar_o_maior_e_o_menor_valor_quando_o_leilao_tiver_tres_lances(self):
-        vini = Usuario('Vini')
+        vini = Usuario('Vini', 500.0)
 
         # lances
 
@@ -70,7 +70,7 @@ class TestAvaliador(TestCase):
 
 
     def test_deve_permitir_propor_um_lance_caso_o_ultimo_usuario_seja_diferente(self):
-        yuri = Usuario('Yuri')
+        yuri = Usuario('Yuri', 500.0)
         lance_do_youri = Lance(yuri, 200.0)
 
         self.leilao.propoe(self.lance_do_gui)
